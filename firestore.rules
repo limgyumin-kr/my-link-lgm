@@ -1,0 +1,72 @@
+rules_version = '2';
+
+// MyLink Firestore 보안 규칙
+// ※ 이 파일은 기록용입니다. 실제 적용은 Firebase 콘솔 → Firestore Database → 규칙에서 하거나
+//   firebase CLI(`firebase deploy --only firestore:rules`)로 배포해야 합니다.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 로그인한 사용자의 uid가 경로의 userId와 같은지 (= 본인 데이터인지)
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // 링크: users/{userId}/links/{linkId}
+    //  - 읽기: 공개 링크(isActive == true)는 누구나 (로그인 불필요)
+    //          비공개 링크(isActive == false)는 본인만
+    //  - 생성/삭제: 로그인 필수 + 본인(userId 일치)만
+    //  - 수정: 본인은 전체, 방문자(로그인 불필요)는 공개 링크의 클릭 수만 정확히 +1
+    //  ※ 비로그인 방문자는 목록 조회 시 where("isActive", "==", true) 조건을 붙여야 함
+    // ─────────────────────────────────────────────────────────────
+    match /users/{userId}/links/{linkId} {
+      allow read: if resource.data.isActive == true || isOwner(userId);
+      allow create, delete: if isOwner(userId);
+      allow update: if isOwner(userId) || isClickIncrement();
+    }
+
+    // 공개 링크의 clickCount만 1 증가시키는 요청인지
+    // (다른 필드 변경, 임의 숫자 설정, 감소, 비공개 링크는 모두 거부)
+    function isClickIncrement() {
+      return resource.data.isActive == true
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['clickCount'])
+        && request.resource.data.clickCount == resource.data.get('clickCount', 0) + 1;
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // 프로필: users/{userId}/profile/{docId}  (실제 문서: users/{userId}/profile/main)
+    //  - 읽기: 누구나 (로그인 불필요)
+    //  - 쓰기(생성/수정/삭제): 로그인 필수 + 본인(userId 일치)만
+    // ─────────────────────────────────────────────────────────────
+    match /users/{userId}/profile/{docId} {
+      allow read: if true;
+      allow write: if isOwner(userId);
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // (앱 동작에 필요한 기존 규칙 유지)
+    // ─────────────────────────────────────────────────────────────
+
+    // 계정 정보(이메일, 사진, 가입일 등): 본인만 읽기/쓰기
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // username → uid 인덱스 (username 중복 체크, /[username] 공개 페이지 조회용)
+    //  - 단건 조회(get)만 공개, 목록 조회 금지
+    //  - 생성: 본인 uid로만, 형식(a-z0-9_ 3~20자) 준수, 예약어 금지 / 삭제: 소유자만 / 수정 금지
+    match /usernames/{username} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && username.matches('^[a-z0-9_]{3,20}$')
+        && !(username in ['mypage', 'api', 'admin', 'login', 'logout', 'signin', 'signup',
+                          'settings', 'profile', 'user', 'users', 'links', 'mylink', 'about',
+                          'help', 'support', 'static', 'public', 'assets', 'null', 'undefined',
+                          'stats']);
+      allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow update: if false;
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "status": "success",
+  "statusCode": 200,
+  "message": "링크 목록을 성공적으로 조회했습니다.",
+  "data": {
+    "profile": {
+      "id": "usr_gyumin_lim_2026",
+      "username": "limgyumin",
+      "displayName": "임규민",
+      "role": "Robotics & Full-Stack AI Engineer",
+      "bio": "현실의 물리적 하드웨어와 모던 웹을 연결합니다.",
+      "avatarUrl": "/profile.jpg",
+      "tags": [
+        "189cm / 110kg",
+        "Lerobot S-101",
+        "Next.js 16",
+        "Robot Learning",
+        "PyTorch"
+      ]
+    },
+    "socials": [
+      {
+        "platform": "github",
+        "label": "GitHub",
+        "url": "https://github.com/limgyumin-kr"
+      },
+      {
+        "platform": "mail",
+        "label": "Email",
+        "url": "mailto:limgyumin22@naver.com"
+      },
+      {
+        "platform": "linkedin",
+        "label": "LinkedIn",
+        "url": "https://linkedin.com/in/limgyumin"
+      },
+      {
+        "platform": "youtube",
+        "label": "YouTube",
+        "url": "https://youtube.com/@gyumin-robotics"
+      }
+    ],
+    "links": [
+      {
+        "id": "link_01",
+        "title": "Lerobot S-101 배터리 전압 분류 로봇 시스템",
+        "description": "로봇팔 비전 학습 모델로 건전지 전압(9.0V 기준)을 판정하고 자동 적재하는 피지컬 AI 솔루션",
+        "url": "https://github.com/limgyumin-kr/lerobot-battery-sorter",
+        "category": "PORTFOLIO",
+        "icon": "file-text",
+        "isActive": true,
+        "isFeatured": true,
+        "order": 1,
+        "clickCount": 1420,
+        "createdAt": "2026-09-15T09:00:00Z",
+        "updatedAt": "2026-10-15T14:30:00Z"
+      },
+      {
+        "id": "link_02",
+        "title": "MyLink 엔지니어 프로필 & 포트폴리오 허브",
+        "description": "Next.js 16과 React 19, SOCAR Frame 2.0 기반으로 구축한 경량 링크트리 클론 서비스",
+        "url": "https://github.com/limgyumin-kr/my-link-gm",
+        "category": "PORTFOLIO",
+        "icon": "file-text",
+        "isActive": true,
+        "isFeatured": true,
+        "order": 2,
+        "clickCount": 980,
+        "createdAt": "2026-09-20T11:00:00Z",
+        "updatedAt": "2026-10-17T08:00:00Z"
+      },
+      {
+        "id": "link_03",
+        "title": "실시간 로봇 관절 6축 텔레메트리 웹 대시보드",
+        "description": "WebSocket 기반 실시간 관절 각도 모니터링 및 픽앤플레이스 작업 현황 대시보드",
+        "url": "https://telemetry.gyumin-robotics.dev",
+        "category": "PORTFOLIO",
+        "icon": "zap",
+        "isActive": true,
+        "isFeatured": false,
+        "order": 3,
+        "clickCount": 650,
+        "createdAt": "2026-10-01T15:00:00Z",
+        "updatedAt": "2026-10-12T10:15:00Z"
+      },
+      {
+        "id": "link_04",
+        "title": "기술 블로그 — 로보틱스 & 하드웨어 I/O 연구 노트",
+        "description": "모터 토크 제어, 컴퓨터 비전 파이프라인, 임베디드 통신 문제 해결기 연재",
+        "url": "https://blog.gyumin.dev",
+        "category": "WEBSITE",
+        "icon": "globe",
+        "isActive": true,
+        "isFeatured": false,
+        "order": 4,
+        "clickCount": 1130,
+        "createdAt": "2026-08-10T12:00:00Z",
+        "updatedAt": "2026-10-16T18:40:00Z"
+      },
+      {
+        "id": "link_05",
+        "title": "2026 엔지니어링 이력서 & 포트폴리오 (PDF)",
+        "description": "하드웨어 프로토타이핑부터 클라우드 웹 배포까지의 상세 프로젝트 히스토리",
+        "url": "https://docs.gyumin.dev/portfolio_2026.pdf",
+        "category": "PORTFOLIO",
+        "icon": "file-text",
+        "isActive": true,
+        "isFeatured": false,
+        "order": 5,
+        "clickCount": 840,
+        "createdAt": "2026-09-01T08:00:00Z",
+        "updatedAt": "2026-10-10T09:20:00Z"
+      },
+      {
+        "id": "link_06",
+        "title": "Hugging Face — 배터리 분류 로봇 오픈 데이터셋",
+        "description": "배터리 외관 및 9V 단자 검출을 위해 수집된 12,000장의 어노테이션 이미지 세트",
+        "url": "https://huggingface.co/datasets/gyumin/battery-sorter-v1",
+        "category": "ETC",
+        "icon": "database",
+        "isActive": true,
+        "isFeatured": false,
+        "order": 6,
+        "clickCount": 420,
+        "createdAt": "2026-10-05T13:30:00Z",
+        "updatedAt": "2026-10-14T11:00:00Z"
+      },
+      {
+        "id": "link_07",
+        "title": "로봇 러닝 & ROS2 한국 개발자 디스코드",
+        "description": "피지컬 AI와 하드웨어 제어에 관심 있는 개발자들과의 기술 토론 및 지식 공유 채널",
+        "url": "https://discord.gg/example-robotics",
+        "category": "WEBSITE",
+        "icon": "globe",
+        "isActive": true,
+        "isFeatured": false,
+        "order": 7,
+        "clickCount": 310,
+        "createdAt": "2026-10-08T10:00:00Z",
+        "updatedAt": "2026-10-15T16:20:00Z"
+      },
+      {
+        "id": "link_08",
+        "title": "[아카이브] 2024-2025 초기 프로젝트 노션 페이지",
+        "description": "이전 아카이브 기록 (현재는 공식 웹 포트폴리오로 이전 완료)",
+        "url": "https://notion.so/limgyumin/archive-2025",
+        "category": "PORTFOLIO",
+        "icon": "archive",
+        "isActive": false,
+        "isFeatured": false,
+        "order": 8,
+        "clickCount": 150,
+        "createdAt": "2026-01-10T10:00:00Z",
+        "updatedAt": "2026-08-30T12:00:00Z"
+      }
+    ],
+    "theme": {
+      "primaryColor": "#0078FF",
+      "cardStyle": "flat"
+    },
+    "pagination": {
+      "total": 8,
+      "page": 1,
+      "limit": 10,
+      "totalPages": 1
+    }
+  },
+  "timestamp": "2026-10-17T11:41:00.000Z"
+}
